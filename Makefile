@@ -1,0 +1,2 @@
+TARGET=Einweisung_Schneideplotter
+include fablab-document/Makefile.include
