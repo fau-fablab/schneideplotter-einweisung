@@ -365,17 +365,17 @@ Falls du die Einstellungen testen möchtest, tue folgendes:
 
 \subsection{richtige Tiefenbegrenzung ermitteln}
 
-Die Schnitttiefenbegrenzung ist dazu da, dass auch im Fehlerfall (doppelt geschnittene Linien oder zu hohe Kraft) das Messer nicht zutief eintauchen kann.
+Die Schnitttiefenbegrenzung ist dazu da, dass auch im Fehlerfall (doppelt geschnittene Linien oder zu hohe Kraft) das Messer nicht zu tief eintauchen kann.
 Im richtigen Fall ist die Tiefenbegrenzung nur ein bisschen größer als die normale Eindringtiefe des Messers.
 
 \begin{tikzpicture}
-\tikzstyle{erklaerungstext}=[anchor=west];
+\tikzstyle{erklaerungstext}=[anchor=west, align=right];
 \draw[fill,red!30!white] (-4,-1.9) rectangle (4,-1.7);
 \draw[fill,black!50!white] (-4,-1.9) rectangle (4,-3);
 \draw[draw=white,dashed] (-.2,-2) -- (-4,-2);
 \draw[draw=green,very thick] (-4,-2.2) -- (4,-2.2);
 \node[erklaerungstext] (zutief) at (-13,0) {\textbf{Schnitttiefenbegrenzung:}};
-\node[erklaerungstext] (zutief) at (-13,-3.5) {zu tief: Trägermaterial kann durchschnitten werden};
+\node[erklaerungstext] (zutief) at (-13,-3.5) {zu tief: Trägermaterial kann durchschnitten werden,\\ bei doppelten Linien wird das Messer beschädigt!};
 \node[erklaerungstext] (okay) at (-13,-2.2) {richtig: Messer wird normalerweise nicht begrenzt};
 \node[erklaerungstext] (zuhoch) at (-13,-1.5) {zu hoch: Folie wird nicht durchschnitten};
 \draw[->]  (zuhoch.east) to (-4,-1.8);
@@ -411,9 +411,9 @@ dass der Träger gerade leicht angeritzt wird.
 \draw[fill,black!50!white] (-4,-1.9) rectangle (4,-3);
 \draw[draw=white,dashed,very thick] (-.2,-2) -- (-4,-2);
 \node[erklaerungstext] (zutief) at (-13,0) {\textbf{Anpressdruck:}};
-\node[erklaerungstext] (zutief) at (-13,-3) {zu tief: Trägermaterial wird deutlich angeschnitten};
+\node[erklaerungstext] (zutief) at (-13,-3) {zu stark: Trägermaterial wird deutlich angeschnitten};
 \node[erklaerungstext] (okay) at (-13,-2) {richtig: Träger wird nur leicht angeritzt};
-\node[erklaerungstext] (zuhoch) at (-13,-1) {zu hoch: Folie wird nicht durchschnitten};
+\node[erklaerungstext] (zuhoch) at (-13,-1) {zu schwach: Folie wird nicht durchschnitten};
 \draw[->]  (zuhoch.east) to (-4,-1.8);
 \draw[->]  (okay.east) to (-4,-2);
 \draw[->]  (zutief.east) to (-4,-2.4);
