@@ -3,7 +3,10 @@ Schneideplotter Einweisung
 
 Einweisung des [FAU FabLab](https://fablab.fau.de) in den [Schneideplotter](https://fablab.fau.de/tool/schneideplotter).
 
-Die neueste Version der Einweisung aus [github](https://github.com/fau-fablab/schneideplotter-einweisung) ist als PDF unter https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/Einweisung_Schneideplotter.pdf abrufbar.
+Die neueste Version aus [github](https://github.com/fau-fablab/schneideplotter-einweisung) ist hier als PDF abrufbar:
+
+- [Einweisung](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/Einweisung_Schneideplotter.pdf)
+- [Einweisungsliste](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/Einweisungsliste_Schneideplotter.pdf)
 
 auschecken
 ----------

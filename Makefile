@@ -1,2 +1,2 @@
-TARGET=Einweisung_Schneideplotter
+TARGET=Einweisung_Schneideplotter Einweisungsliste_Schneideplotter
 include fablab-document/Makefile.include
