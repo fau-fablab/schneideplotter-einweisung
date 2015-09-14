@@ -209,7 +209,7 @@ Wenn dein Material nicht enthalten ist oder die Einstellungen nicht funktioniere
 \ref{einstellungenSelberAusprobieren} nach, wie du die Einstellungen selbst ermitteln kannst.
 
 \subsection{Einstellungen und Messertyp ablesen}
-
+\label{subsec:einstellungen}
 In folgender Tabelle findest du zu gängigen Materialien das passende Messer und die Einstellungen.
 Das Offset kannst du später anhand des Messertyps herausfinden.
 
@@ -341,15 +341,13 @@ Mit \plotterForce \plotterPfeilRechts kann man den Anpressdruck ändern.
 Mit \plotterPfeilRauf/\plotterPfeilRunter den Wert auswählen und dann \plotterEnter drücken.
 
 \subsection{Geschwindigkeit}
-Der Anpressdruck muss je nach Material eingestellt werden (siehe Tabelle weiter oben), dazu \plotterMenu so
-oft drücken bis ungefähr folgendes angezeigt wird:\\
-\plotterDisplay{20cm/s\\100gf 0.250mm}
+Die Schnittgeschwindigkeit kann für die meisten Materialien bei \plotterDisplay{20cm/s} belassen werden.
+Details können der Tabelle in Kapitel \ref{subsec:einstellungen} entnommen werden.
+Ein Indiz dafür, dass die Schnittgeschwindigkeit zu hoch ist, ist dass das Messer spitze Ecken von der Trägerfolie abzieht.
+\textbf{Achtung:} bei viel zu hoher Schnittgeschwindigkeit kann das Messer zerstört werden.
 
-Hierbei sind die \plotterDisplay{100gf} der eingestellte Anpressdruck, kontrolliere mit der gegebenen
-Tabelle ob der eingestellte Anpressdruck zu deinem Material passt.
 
-Mit \plotterForce \plotterPfeilRechts kann man den Anpressdruck ändern.
-Mit \plotterPfeilRauf/\plotterPfeilRunter den Wert auswählen und dann \plotterEnter drücken.
+\todo{Wie stellt man Schnittgeschwindigkeit im Plotter ein und überprüft sie?}
 
 \section{Einstellungen testen und selbst ermitteln}
 \label{einstellungenSelberAusprobieren}
