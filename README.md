@@ -5,8 +5,8 @@ Einweisung des [FAU FabLab](https://fablab.fau.de) in den [Schneideplotter](http
 
 Die neueste Version aus [github](https://github.com/fau-fablab/schneideplotter-einweisung) ist hier als PDF abrufbar:
 
-- [Einweisung](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/Einweisung_Schneideplotter.pdf)
-- [Einweisungsliste](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/Einweisungsliste_Schneideplotter.pdf)
+- [Einweisung](https://brain.fablab.fau.de/build/schneideplotter-einweisung/Einweisung_Schneideplotter.pdf)
+- [Einweisungsliste](https://brain.fablab.fau.de/build/schneideplotter-einweisung/Einweisungsliste_Schneideplotter.pdf)
 
 auschecken
 ----------
@@ -17,8 +17,8 @@ git clone --recursive git@github.com:fau-fablab/schneideplotter-einweisung.git
 
 Technische Details zum Buildserver siehe auf macgyver `/home/buildserver/README`
 
-[![Build Status](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/status.svg)](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/)
-[![TODOs](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/status-todos.svg)](https://user.fablab.fau.de/~buildserver/schneideplotter-einweisung/)
+[![Build Status](https://brain.fablab.fau.de/build/schneideplotter-einweisung/status.svg)](https://brain.fablab.fau.de/build/schneideplotter-einweisung/)
+[![TODOs](https://brain.fablab.fau.de/build/schneideplotter-einweisung/status-todos.svg)](https://brain.fablab.fau.de/build/schneideplotter-einweisung/)
 
 Lizenz
 ------
