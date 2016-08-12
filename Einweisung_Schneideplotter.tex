@@ -25,7 +25,7 @@
 
 \linespread{1.2}
 
-\date{Januar 2013}
+\date{\today}
 \author{kontakt@fablab.fau.de}
 \fancyfoot[L]{kontakt@fablab.fau.de}
 \title{Einweisung Schneideplotter}
@@ -58,7 +58,10 @@
 \newcommand{\plotterPfeilLinks}{\plotterKnopf{$\blacktriangleleft$}}
 \newcommand{\plotterPfeilRechts}{\plotterKnopf{$\blacktriangleright$}}
 
-\usepackage{siunitx} % SI-Einheiten ohne Gore
+%\usepackage{siunitx}
+% WORKAROUND
+\newcommand{\degree}{-Grad}
+\newcommand{\SI}[2]{#1#2}
 
 %\newcommand{\todo}[1]{\textbf{\color{red}{TODO: #1}}}
 
@@ -613,7 +616,7 @@ Darin enthalten ist die Maschinennutzungsgebühr des Schneideplotters.
 Wenn du eine Folie selbst mitbringst, musst du nur diese Nutzungsgebühr zahlen.
 Für Folien aus der Restekiste entfällt diese Gebühr, da sie bereits gezahlt wurde.
 
-Zusätzlich ist für die Benutzung der Presse ein Beitrag von 1€ zu zahlen.
+Zusätzlich ist für die Benutzung der Presse ein Beitrag von 1\texteuro zu zahlen.
 
 \section{Verarbeitung: Glitzersteine applizieren}
 \todo{testen und vollständig beschreiben}
