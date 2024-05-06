@@ -106,7 +106,7 @@ Material mit einer Rückseite, die nicht durchgeschnitten wird:
 Bei diesen Materialien (z.\,B. Overheadfolie oder normales Papier) muss eine Schneidunterlage verwendet werden,
 entweder eine spezielle selbstklebende Schneideunterlage oder z.\,B. ein Stück Karton, das man mit Sprühkleber befestigt.  
 \begin{itemize}
- \item Papier bis $$250 \frac{\mathrm{g}}{\mathrm{m}^2}$$, halte bei stärkerem Material Rücksprache (Achtung, 80g Papier reißt oft beim Ablösen von der Schneideunterlage!)
+ \item Papier bis 250 \si{g/m^2}, halte bei stärkerem Material Rücksprache (Achtung, 80g Papier reißt oft beim Ablösen von der Schneideunterlage!)
  \item Overheadfolie
  \item frage bei anderen Materialien bitte nach
 \end{itemize}
@@ -206,6 +206,8 @@ Je nach Material musst du nun die Einstellungen herausfinden:
  \item Geschwindigkeit und Schnittkraft (Einstellung im Plotter)
 \end{itemize}
 
+\textbf{\textcolor{red!50!red}{Achtung:} Die Schnittiefe wird gerne vergessen, ist aber wichtig! }
+
 Dazu haben wir Tabellen zusammengestellt.
 Wenn dein Material nicht enthalten ist oder die Einstellungen nicht funktionieren, lies in Abschnitt
 \ref{einstellungenSelberAusprobieren} nach, wie du die Einstellungen selbst ermitteln kannst.
@@ -217,15 +219,15 @@ Das Offset kannst du später anhand des Messertyps herausfinden.
 
 \begin{tabular}{ccccc}
 \hline
-\textbf{Material} & \textbf{Andruck} & \textbf{Speed} & \textbf{Messer} & \textbf{Eintauchtiefe}\\
+\textbf{Material} & \textbf{Andruck} & \textbf{Speed} & \textbf{Messer} & \textbf{Schnitttiefenbegrenzung}\\
 \hline
 \hline
 PVC Beschriftungsfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
 Flockfolie & 100gf & 20cm/s & Grün & 0,3\,mm ** \\ \hline
 Flexfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
-250g Papier schneiden & 250gf & 20cm/s & Rot\\ \hline
-250g Papier anreißen & 100gf & 20cm/s & Rot\\ \hline
-Etikettenpapier schneiden & 70gf? & 20cm/s & Rot\\ \hline
+250g Papier schneiden & 250gf & 20cm/s & Rot & ausprobieren \\ \hline
+250g Papier anreißen & 100gf & 20cm/s & Rot & ausprobieren\\ \hline
+Etikettenpapier schneiden & ca. 90gf & 20cm/s & Rot & ausprobieren \\ \hline
 Stiftplot Fineliner & 30gf & 30cm/s & Stift & --\\ \hline
 Stiftplot Bleistift HB & 250gf & 20cm/s & Stift & --\\ \hline
 \hline
@@ -293,12 +295,15 @@ Auch für die Tiefeneinstellung muss der Messerhalter entnommen werden.
 
 
 \begin{enumerate}
- \item Zum Messerwechsel die silberne Halterungsschraube lösen und den Messerhalter entnehmen. \\
-       Wenn das Messer nicht gewechselt werden soll, überspringe die nächsten vier Punkte.
- \item Oben auf den Stift drücken, damit das Messer unten herausschaut. 
- \item Dann, ohne sich zu stechen, das Messer herausziehen. 
-\item Altes Messer mit Kappe versehen und aufräumen. Kappe des neuen Messers abziehen, ohne sich zu stechen.
-\item Neues Messer in den Messerhalter tun. Kappe des neuen Messers aufräumen.\\ Am Plotter einen Notizzettel anbringen, welches Messer eingesetzt ist (Typ, Offset, Tiefeneinstellung).
+ \item Zum Messerwechsel die silberne Halterungsschraube lösen und den Messerhalter entnehmen.
+ \item Nehme den richtigen Messerhalter aus der Ablage neben dem Plotter.
+ \item Nur wenn der Messer-Einsatz im Halter gewechselt werden soll: (Nur für Betreuer, normalerweise nicht nötig)
+    \begin{enumerate}
+    \item Oben auf den Stift drücken, damit das Messer unten herausschaut. 
+    \item Dann, ohne sich zu stechen, das Messer herausziehen. 
+    \item Altes Messer mit Kappe versehen und aufräumen. Kappe des neuen Messers abziehen, ohne sich zu stechen.
+    \item Neues Messer in den Messerhalter tun. Kappe des neuen Messers aufräumen.\\ Am Plotter einen Notizzettel anbringen, welches Messer eingesetzt ist (Typ, Offset, Tiefeneinstellung).
+    \end{enumerate}
 \item Zur Einstellung der Tiefenbegrenzung zunächst den Messerhalter so drehen, dass die Messerspitze gerade im Messerhalter verschwindet. Wenn man jetzt den Messerhalter vorsichtig über ein Blatt Papier bewegt, soll er eine möglichst feine, aber gerade noch erkennbare Messerspur hinterlassen. Das entspricht einer Schnitttiefe von 0\,mm. 
 \item Drehe nun den unteren Ring am Messerhalter, um die richige Eintauchtiefe einzustellen. Diese steht in der Material-Tabelle. \\Die auf dem Messerhalter angebrachten kleinen Striche entsprechen jeweils 0,05\,mm, eine ganze Umdrehung entspricht 0,5mm.
 
@@ -348,8 +353,7 @@ Details können der Tabelle in Kapitel \ref{subsec:einstellungen} entnommen werd
 Ein Indiz dafür, dass die Schnittgeschwindigkeit zu hoch ist, ist dass das Messer spitze Ecken von der Trägerfolie abzieht.
 \textbf{Achtung:} bei viel zu hoher Schnittgeschwindigkeit kann das Messer zerstört werden.
 
-
-\todo{Wie stellt man Schnittgeschwindigkeit im Plotter ein und überprüft sie?}
+Einstellen: \plotterMenu mehrmals drücken bis \plotterDisplay{UNSETUP} erscheint. Einmal \plotterPfeilRunter drücken damit \plotterDisplay{FORCE} erscheint und mit \plotterPfeilRechts bestätigen. Dann so oft \plotterPfeilRunter drücken bis \plotterDisplay{SPEED} erscheint und mit \plotterPfeilRechts bestätigen. Mit \plotterPfeilRauf/\plotterPfeilRunter den Wert auswählen. Mit \plotterEnter bestätigen. Am Ende auf \plotterMenu drücken.
 
 \section{Einstellungen testen und selbst ermitteln}
 \label{einstellungenSelberAusprobieren}
@@ -613,7 +617,37 @@ Darin enthalten ist die Maschinennutzungsgebühr des Schneideplotters.
 Wenn du eine Folie selbst mitbringst, musst du nur diese Nutzungsgebühr zahlen.
 Für Folien aus der Restekiste entfällt diese Gebühr, da sie bereits gezahlt wurde.
 
-Zusätzlich ist für die Benutzung der Presse ein Beitrag von 1\texteuro zu zahlen.
+Zusätzlich ist für die Benutzung der Presse ein Beitrag zu zahlen.
+
+\section{Verarbeitung: Etikettenpapier bedrucken und schneiden}
+
+Der Plotter kann spezielle Druckmarken erkennen und so genau passend zur ausgedruckten Seite ausschneiden. So kann man bunte Aufkleber mit beliebigen Formen herstellen.
+
+Du solltest dunkle Hintergründe ein paar Millimeter größer machen als die eigentliche Schnittlinie, damit es nicht zu unschönen weißen Rändern kommt wenn der Plotter minimal daneben schneidet.
+
+\begin{enumerate}
+\item Du benötigst: Selbstklebendes Etikettenpapier A4, ohne vorgeschnittene Etiketten, laserdrucker-geeignet. (Normalerweise im Lab vorrätig.)
+\item Nutzbarer Bereich: 160 x 200 mm, also deutlich kleiner als die A4-Seite.
+\item Inkscape --- neues Dokument --- Erweiterungen / Roland Cutstudio / Insert Cropmarks. (Ähnlich wie hier beschrieben geht es auch in Illustrator.)
+\item Druck-Grafik auf Ebene \enquote{Print} einfügen
+\item Schnittlinien auf Ebene \enquote{Cut} einfügen
+\item Ebene \enquote{Cut} ausblenden.
+\item Wichtiger Hinweis zum Bedrucken mit dem FabLab-Laserdrucker Lexmark CS725:
+    \begin{itemize}
+    \item Papier in den manuellen Einzug einlegen (wenn dieser eingeklappt ist, über den "Schiebe-Knopf" ausklappen)
+    \item Am PC folgende Druckereinstellung setzen: Papiertyp = Etiketten (!!! sonst kann der Drucker Schaden nehmen !!!) und Papierfach = manueller Einzug.
+\item Drucken. Bei Problemen mit dem Drucken die Datei als PDF-Kopie speichern und das PDF drucken.
+\item Das Drucken kostet extra - Bezahlen nicht vergessen.
+\item Am Plotter Messertyp, Andruckkraft, Offset und Schnitttiefe (!) korrekt einstellen wie hier in der Einweisung beschrieben.
+\item Papier in Plotter einlegen, Modus \enquote{Blatt}.
+\item Ebene \enquote{Cut} einblenden und \enquote{Print} ausblenden.
+\item Erweiterungen / Roland Cutstudio / Open in Cutstudio.
+\item In Cutstudio sollten nun die Schnittmarken (grau) mit angezeigt werden.
+\item Plotterkopf mit den Pfeiltasten nach ganz links unten bewegen.
+\item In Cutstudio: Datei - Schneiden.
+\item Am Ende in Cutstudio die Einstellung \enquote{Datei - Drucken und schneiden} wieder ausschalten, weil sich Cutstudio diese Einstellung merkt und das die nächsten Benutzer verwirrt.
+\item Bezahlen: Papier + Ausdrucken + Plottern.
+\end{enumerate}
 
 \section{Verarbeitung: Glitzersteine applizieren}
 \todo{testen und vollständig beschreiben}
