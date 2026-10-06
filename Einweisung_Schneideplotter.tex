@@ -232,14 +232,14 @@ Stiftplot Bleistift HB & 250gf & 20cm/s & Stift & --\\ \hline
 
 Das Offset zum jeweiligen Messer steht auf der Packung und als Richtwert auch hier in dieser Tabelle:
 
-\begin{tabular}{ccccp{20em}}
+\noindent\begin{tabularx}{\textwidth}{ccccX}
 \hline
 \textbf{Kappenfarbe} & \textbf{Offset} & \textbf{Grad} & \textbf{max. Tiefe}* & \textbf{Geeignet für...}\\
 \hline
 \hline
 Rot & 0,3\,mm & 45$^{\circ}$ & 0,3\,mm & normale Beschriftungsfolie (nicht Reflex/Glitzer!), Flexfolie, Papier, Overheadfolie\\
 \hline
-Rot small & TODO & 45$^{\circ}$ & TODO & wie Rot, für kleinste Schriften\\
+Rot small & siehe Packung & 45$^{\circ}$ & siehe Packung & wie Rot, für kleinste Schriften\\
 \hline
 Blau & 0,3\,mm & 35$^{\circ}$ & 0,2\,mm &  besonders dünne Folien (ähnlich wie 45$^{\circ}$)\\
 \hline
@@ -247,15 +247,23 @@ Grün & 0,5\,mm & 60$^{\circ}$ & 0,8\,mm & Flockfolien, reflektierende Folien, K
  \hfill\, % Workaround für Zeilenumbruch
  \mbox{dickes/weiches/zähes Material} \\
 \hline
-Weiß& 0,3\,mm & k.A. & k.A. & \todo{ergoogeln}\\
+Weiß& 0,3\,mm & siehe Packung & siehe Packung & unbekannt, vor der Benutzung Betreuer:innen fragen\\
 \hline
 Stifte & 0\, mm & -- & -- & Malen\\
 \hline
-\end{tabular}
+\end{tabularx}
 
 { \footnotesize * Dieser Wert ist eine theoretische Obergrenze, die Einstellung muss je nach Material kleiner gewählt werden! Theoretisch maximale Eintauchtiefe = Offset $\cdot$ tan($\alpha$), sonst wird das effektive Offset negativ. }
 
 Bei der Messerauswahl ist zu beachten, dass ein größerer Schneidenwinkel für dickere Materialien und feine Ausschnitte besser geeignet ist, dafür aber schneller verschleißt.
+
+\paragraph{Gut zu wissen über die Messer}
+\begin{itemize}
+ \item Die Kappenfarbe ist kein Standard, jeder Hersteller färbt anders. Verlass dich auf Winkel und Offset auf der Packung und auf den Notizzettel am Plotter, nicht nur auf die Farbe.
+ \item Das Messer dreht sich im Halter frei mit, die Spitze läuft der Drehachse um das Offset hinterher. Der Plotter rechnet das an Ecken heraus. Stimmt das eingestellte Offset nicht, werden Ecken rund oder bekommen kleine Haken.
+ \item Ein stumpfes Messer erkennst du daran, dass die Folie trotz passender Einstellungen nicht ganz durchgeschnitten wird, die Schnittkanten ausfransen oder kleine Teile beim Entgittern mitreißen. Dann nicht einfach den Anpressdruck erhöhen, sondern den Betreuer:innen Bescheid geben.
+ \item Messer nie lose herumliegen lassen: entweder im Messerhalter oder mit Kappe in der Packung.
+\end{itemize}
 \newcommand{\messer}{
 \shadedraw[left color=black!80!white!90!blue,right color=black!30!white] (-0.7,3) -- (-0.7,0) -- (-.2,0) -- (-.2,-2) -- (.7,0) -- (.7,3) -- cycle;
 \fill[fill,color=black!20!white] (-.2,-2) -- (.7,0)  -- (.7,.3) --  (-.2,-1.7) -- cycle;
