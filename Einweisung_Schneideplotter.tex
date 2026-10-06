@@ -75,6 +75,12 @@
  \item Nur erlaubte Materialien (siehe Liste) mit dazu passendem Messer und ggf. Schneidunterlage verwenden.
 \end{itemize}
 
+% Inhaltsverzeichnis wie in der 3D-Drucker-Einweisung: nach Kapitel 1 auf eigener Seite
+\newpage
+\setcounter{tocdepth}{2} % nur Kapitel und Unterkapitel, wie in der 3D-Drucker-Einweisung
+{\linespread{1}\selectfont\tableofcontents} % normaler Zeilenabstand, damit es auf eine Seite passt
+\newpage
+
 \section{Erlaubte Materialien}
 \paragraph{Dicke}
 Es lassen sich Papiere und Folien bis zu einer Dicke von 0,1\,mm (Material ohne Trägerfolie) schneiden.
@@ -113,9 +119,6 @@ Zwei selbstklebende Unterlagen sind im FabLab vorrätig und befinden sich über 
 Das Material wird darauf gelegt und haftet an der Oberfläche des Trägers.
 Dieser Stapel wird ganz normal in den Plotter eingeführt und eingespannt.
 Nach dem Plotten ist darauf zu achten, dass sehr filigrane Strukturen beim Ablösen nicht zerstört werden.
-
-
-\tableofcontents
 
 \section{Das Gerät}
 Bei dem Schneideplotter handelt es sich um einen Roland Camm-1 Servo GX-24. 
