@@ -16,7 +16,7 @@
 \usepackage{tabularx} % Tabellen mit bestimmtem Breitenverhältnis der Spalten
 \usepackage{wrapfig} % Textumlauf um Bilder
 \renewcommand{\texteuro}{\euro}
-\usetikzlibrary{shadings}
+\usetikzlibrary{shadings,patterns,arrows.meta} % patterns, arrows.meta: Zeichnungen in zeichnungen/
 
 \usepackage[colorinlistoftodos,prependcaption]{todonotes}
 \presetkeys%
@@ -63,9 +63,6 @@
 %\newcommand{\todo}[1]{\textbf{\color{red}{TODO: #1}}}
 
 
-% Wenn wir die Zeichnungen aus der Anleitung nehmen, müssen wir entsprechend korrekt zitieren:
-% in der Anleitung steht eigentlich, dass alle Auszüge etc verboten sind, aber Roland steht ja nicht über dem Urheberrecht
-\newcommand{\RolandCopyrightHinweis}{Abbildung \copyright{} 2005 Roland DG Corporation, aus \texttt{\tiny http://files.rolanddg.be/Products/GX-24/Manuals/Manual\_GX-24\_de.pdf}}
 
 \begin{document}
 \maketitle
@@ -123,7 +120,7 @@ Nach dem Plotten ist darauf zu achten, dass sehr filigrane Strukturen beim Ablö
 \section{Das Gerät}
 Bei dem Schneideplotter handelt es sich um einen Roland Camm-1 Servo GX-24. 
 
-Mache dich kurz mit den Teilen des Plotters, welche du in der folgenden Zeichnung findest, vertraut.
+Mache dich kurz mit den Teilen des Plotters, welche du in der folgenden Skizze findest, vertraut.
 Im weiteren Verlauf werden wir uns auf die entsprechenden Namen beziehen.
 
 Die Knöpfe auf dem Bedienfeld werden folgendermaßen bezeichnet:
@@ -131,9 +128,8 @@ Die Knöpfe auf dem Bedienfeld werden folgendermaßen bezeichnet:
 Unten links findest du die Feinjustierung des Auflagedrucks, welcher auf 0 stehen sollte, sowie unten rechts den Netzschalter.
 Im eingeschalteten Zustand leuchtet der Netzschalter blau.
 \begin{center}
- \includegraphics[width=\textwidth]{img/plotteroverview} \\
- \textbf{Aufbau des Plotters} \\
- \RolandCopyrightHinweis
+ \resizebox{\textwidth}{!}{\input{zeichnungen/plotter-aufbau}} \\[2mm]
+ \textbf{Aufbau des Plotters} (Skizze, Ansicht von vorn)
 \end{center}
 
 
@@ -147,10 +143,9 @@ Folie richtig herum einlegen, bei T-Shirt-Folie siehe Kapitel \ref{VerarbeitungS
 
 Durch Orientierung an den Hilfslinien kann man sicherstellen, dass das Material gerade eingelegt ist.
 Wichtig ist, dass der rechte Materialrand genau unterhalb einer der grauen Kontrollmarkierungen liegt. \\
-Siehe dazu folgende Zeichnung:
+Siehe dazu folgende Skizze:
 \begin{center}
- \includegraphics[width=\textwidth]{img/kontrollmarkierungen} \\
- \RolandCopyrightHinweis
+ \resizebox{\textwidth}{!}{\input{zeichnungen/kontrollmarkierungen}}
 \end{center}
 
 Der linke Materialrand muss sich unterhalb der großen grauen Kontrollmarkierung befinden.
@@ -694,11 +689,6 @@ Schraffieren geht in Inkscape mit dem Pfad-Effekt Schraffur, der aber nicht auf 
 
 \newpage
 \appendix
-\section{Copyright}
-Der Quelltext dieser Einweisung, ohne die Bilder von Roland, ist unter CC-BY-SA 3.0 Unported lizenziert. Solange kein freier Ersatz für die Roland-Bilder vorliegt, kann das gesamte Dokument leider nicht frei verwendet werden.
-%\ccLicense{schneideplotter-einweisung}{Einweisung Schneideplotter}
-\todo{freien Ersatz für die Bilder finden}
-
-Dieses Dokument stammt aus fau-fablab/schneideplotter-einweisung@\Revision{}.
+\ccLicense{schneideplotter-einweisung}{Einweisung Schneideplotter}
 
 \end{document}
