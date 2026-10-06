@@ -16,7 +16,7 @@
 \usepackage{tabularx} % Tabellen mit bestimmtem Breitenverhältnis der Spalten
 \usepackage{wrapfig} % Textumlauf um Bilder
 \renewcommand{\texteuro}{\euro}
-\usetikzlibrary{shadings}
+\usetikzlibrary{shadings,patterns,arrows.meta} % patterns, arrows.meta: Zeichnungen in zeichnungen/
 
 \usepackage[colorinlistoftodos,prependcaption]{todonotes}
 \presetkeys%
@@ -46,6 +46,18 @@
 \newcommand{\plotterKnopf}[1]{\knopf{plotterknopf}{#1}}
 \newcommand{\plotterDisplay}[1]{\texttt{#1}}
 
+% Messer nach Kappenfarbe: Farbfeld und Name in der Farbe der Kappe
+% (Weiß als Feld mit Rand und schwarzer Schrift, sonst unlesbar)
+\definecolor{kapperot}{HTML}{C62828}
+\definecolor{kappeblau}{HTML}{1565C0}
+\definecolor{kappegruen}{HTML}{2E7D32}
+\newcommand{\kappenfeld}[2]{\tikz[baseline=-0.6ex]\draw[draw=#2, fill=#1, line width=0.4pt] (0,0) circle (0.9ex);}
+\newcommand{\messerRot}{\kappenfeld{kapperot}{kapperot}\,\textcolor{kapperot}{\textbf{Rot}}}
+\newcommand{\messerRotSmall}{\kappenfeld{kapperot}{kapperot}\,\textcolor{kapperot}{\textbf{Rot small}}}
+\newcommand{\messerBlau}{\kappenfeld{kappeblau}{kappeblau}\,\textcolor{kappeblau}{\textbf{Blau}}}
+\newcommand{\messerGruen}{\kappenfeld{kappegruen}{kappegruen}\,\textcolor{kappegruen}{\textbf{Grün}}}
+\newcommand{\messerWeiss}{\kappenfeld{white}{black!50}\,\textbf{Weiß}}
+
 % einzelne Knöpfe
 \newcommand{\plotterTest}{\plotterKnopf{TEST}}
 \newcommand{\plotterOrigin}{\plotterKnopf{ORIGIN}}
@@ -63,9 +75,6 @@
 %\newcommand{\todo}[1]{\textbf{\color{red}{TODO: #1}}}
 
 
-% Wenn wir die Zeichnungen aus der Anleitung nehmen, müssen wir entsprechend korrekt zitieren:
-% in der Anleitung steht eigentlich, dass alle Auszüge etc verboten sind, aber Roland steht ja nicht über dem Urheberrecht
-\newcommand{\RolandCopyrightHinweis}{Abbildung \copyright{} 2005 Roland DG Corporation, aus \texttt{\tiny http://files.rolanddg.be/Products/GX-24/Manuals/Manual\_GX-24\_de.pdf}}
 
 \begin{document}
 \maketitle
@@ -78,6 +87,12 @@
  \item Nur erlaubte Materialien (siehe Liste) mit dazu passendem Messer und ggf. Schneidunterlage verwenden.
  \item Folienrollen nicht mit einer Schere abschneiden, sondern mit einem Cuttermesser in der Metallrille vorne am Plotter (siehe Abschnitt \ref{folieAbtrennen}).
 \end{itemize}
+
+% Inhaltsverzeichnis wie in der 3D-Drucker-Einweisung: nach Kapitel 1 auf eigener Seite
+\newpage
+\setcounter{tocdepth}{2} % nur Kapitel und Unterkapitel, wie in der 3D-Drucker-Einweisung
+{\linespread{1}\selectfont\tableofcontents} % normaler Zeilenabstand, damit es auf eine Seite passt
+\newpage
 
 \section{Erlaubte Materialien}
 \paragraph{Dicke}
@@ -105,26 +120,23 @@ Material mit einer Rückseite, die nicht durchgeschnitten wird:
 
 
 Bei diesen Materialien (z.\,B. Overheadfolie oder normales Papier) muss eine Schneidunterlage verwendet werden,
-entweder eine spezielle selbstklebende Schneideunterlage oder z.\,B. ein Stück Karton, das man mit Sprühkleber befestigt.  
+entweder eine spezielle selbstklebende Schneidunterlage oder z.\,B. ein Stück Karton, das man mit Sprühkleber befestigt.  
 \begin{itemize}
- \item Papier bis 250 \si{g/m^2}, halte bei stärkerem Material Rücksprache (Achtung, 80g Papier reißt oft beim Ablösen von der Schneideunterlage!)
+ \item Papier bis 250 \si{g/m^2}, halte bei stärkerem Material Rücksprache (Achtung, 80-g-Papier reißt oft beim Ablösen von der Schneidunterlage!)
  \item Overheadfolie
  \item frage bei anderen Materialien bitte nach
 \end{itemize}
 
-\textbf{Ohne Unterlage wird die Schneidleiste des Plotters beschädigt!}
+\textbf{Ohne Unterlage wird die Schneidekante des Plotters beschädigt!}
 Zwei selbstklebende Unterlagen sind im FabLab vorrätig und befinden sich über dem Plotter in einer Kiste.
 Das Material wird darauf gelegt und haftet an der Oberfläche des Trägers.
 Dieser Stapel wird ganz normal in den Plotter eingeführt und eingespannt.
 Nach dem Plotten ist darauf zu achten, dass sehr filigrane Strukturen beim Ablösen nicht zerstört werden.
 
-
-\tableofcontents
-
 \section{Das Gerät}
-Bei dem Schneideplotter handelt es sich um einen Roland Camm-1 Servo GX-24. 
+Bei dem Schneideplotter handelt es sich um einen Roland CAMM-1 Servo GX-24. 
 
-Mache dich kurz mit den Teilen des Plotters, welche du in der folgenden Zeichnung findest, vertraut.
+Mache dich kurz mit den Teilen des Plotters, welche du in der folgenden Skizze findest, vertraut.
 Im weiteren Verlauf werden wir uns auf die entsprechenden Namen beziehen.
 
 Die Knöpfe auf dem Bedienfeld werden folgendermaßen bezeichnet:
@@ -132,9 +144,8 @@ Die Knöpfe auf dem Bedienfeld werden folgendermaßen bezeichnet:
 Unten links findest du die Feinjustierung des Auflagedrucks, welcher auf 0 stehen sollte, sowie unten rechts den Netzschalter.
 Im eingeschalteten Zustand leuchtet der Netzschalter blau.
 \begin{center}
- \includegraphics[width=\textwidth]{img/plotteroverview} \\
- \textbf{Aufbau des Plotters} \\
- \RolandCopyrightHinweis
+ \resizebox{\textwidth}{!}{\input{zeichnungen/plotter-aufbau}} \\[2mm]
+ \textbf{Aufbau des Plotters} (Skizze, Ansicht von vorn)
 \end{center}
 
 
@@ -148,15 +159,14 @@ Folie richtig herum einlegen, bei T-Shirt-Folie siehe Kapitel \ref{VerarbeitungS
 
 Durch Orientierung an den Hilfslinien kann man sicherstellen, dass das Material gerade eingelegt ist.
 Wichtig ist, dass der rechte Materialrand genau unterhalb einer der grauen Kontrollmarkierungen liegt. \\
-Siehe dazu folgende Zeichnung:
+Siehe dazu folgende Skizze:
 \begin{center}
- \includegraphics[width=\textwidth]{img/kontrollmarkierungen} \\
- \RolandCopyrightHinweis
+ \resizebox{\textwidth}{!}{\input{zeichnungen/kontrollmarkierungen}}
 \end{center}
 
 Der linke Materialrand muss sich unterhalb der großen grauen Kontrollmarkierung befinden.
 Dann müssen die Andruckrollen positioniert werden.
-Dabei ist auch wieder darauf zu achten, dass sich  die linke Rolle innerhalb der großen Kontrollmarkierung befindet.
+Dabei ist auch wieder darauf zu achten, dass sich die linke Rolle innerhalb der großen Kontrollmarkierung befindet.
 Die andere Andruckrolle muss in einem der vier grauen Bereiche liegen.
 Positioniere die rechte Rolle so, dass der Abstand zwischen den Rollen möglichst groß ist.
 Beide Rollen müssen sich aber vollständig auf dem Material befinden.  
@@ -185,13 +195,13 @@ Nun musst du dich entscheiden, ob du aus einer Rolle etwas ausschneiden möchtes
 Wähle mit den Tasten \plotterPfeilRauf \plotterPfeilRunter entweder \plotterDisplay{KANTE} oder \plotterDisplay{ROLLE} aus und bestätige mit \plotterEnter die Auswahl.
 Wenn du \plotterDisplay{ROLLE} auswählst, liegt der Nullpunkt für dieses Material auf der Schneidekante.
 Das ist der hellblaue Gummistreifen unterhalb des Schneidewagens.
-Wenn du aber \plotterDisplay{KANTE} auswählst, dann wird die Anfangskante der Rolle gesucht und 1,5-2\,cm bis zum Nullpunkt Platz gelassen.
+Wenn du aber \plotterDisplay{KANTE} auswählst, dann wird die Anfangskante der Rolle gesucht und 1,5--2\,cm bis zum Nullpunkt Platz gelassen.
 
 \paragraph{Blatt}
-Wenn Du stattdessen Blatt wählst, zieht der Plotter das eingelegte Blatt einmal vollständig ein und schiebt es danach wieder zurück, um die Maße zu bestimmen.
+Wenn du stattdessen Blatt wählst, zieht der Plotter das eingelegte Blatt einmal vollständig ein und schiebt es danach wieder zurück, um die Maße zu bestimmen.
 Diese werden danach im Display angezeigt.
 
-Nach dem Einlegen und der Auswahl der Medienart musst Du auf jeden Fall so lange warten, bis die Medienmaße im Display angezeigt werden.
+Nach dem Einlegen und der Auswahl der Medienart musst du auf jeden Fall so lange warten, bis die Medienmaße im Display angezeigt werden.
 In den Modi Rolle und Kante wird für die Länge \enquote{---} angezeigt.
 
 Danach einmal den Knopf \plotterMenu drücken, um das Laden abzuschließen.
@@ -223,12 +233,12 @@ Das Offset kannst du später anhand des Messertyps herausfinden.
 \textbf{Material} & \textbf{Andruck} & \textbf{Speed} & \textbf{Messer} & \textbf{Schnitttiefenbegrenzung}\\
 \hline
 \hline
-PVC-Beschriftungsfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
-Flockfolie & 100gf & 20cm/s & Grün & 0,3\,mm ** \\ \hline
-Flexfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
-250g Papier schneiden & 250gf & 20cm/s & Rot & ausprobieren \\ \hline
-250g Papier anreißen & 100gf & 20cm/s & Rot & ausprobieren\\ \hline
-Etikettenpapier schneiden & ca. 90gf & 20cm/s & Rot & ausprobieren \\ \hline
+PVC-Beschriftungsfolie & 100gf & 20cm/s & \messerRot & 0,15\,mm ? \\ \hline
+Flockfolie & 100gf & 20cm/s & \messerGruen & 0,3\,mm ** \\ \hline
+Flexfolie & 100gf & 20cm/s & \messerRot & 0,15\,mm ? \\ \hline
+250-g-Papier schneiden & 250gf & 20cm/s & \messerRot & ausprobieren \\ \hline
+250-g-Papier anreißen & 100gf & 20cm/s & \messerRot & ausprobieren\\ \hline
+Etikettenpapier schneiden & ca. 90gf & 20cm/s & \messerRot & ausprobieren \\ \hline
 Stiftplot Fineliner & 30gf & 30cm/s & Stift & --\\ \hline
 Stiftplot Bleistift HB & 250gf & 20cm/s & Stift & --\\ \hline
 \hline
@@ -238,30 +248,38 @@ Stiftplot Bleistift HB & 250gf & 20cm/s & Stift & --\\ \hline
 
 Das Offset zum jeweiligen Messer steht auf der Packung und als Richtwert auch hier in dieser Tabelle:
 
-\begin{tabular}{ccccp{20em}}
+\noindent\begin{tabularx}{\textwidth}{ccccX}
 \hline
 \textbf{Kappenfarbe} & \textbf{Offset} & \textbf{Grad} & \textbf{max. Tiefe}* & \textbf{Geeignet für...}\\
 \hline
 \hline
-Rot & 0,3\,mm & 45$^{\circ}$ & 0,3\,mm & normale Beschriftungsfolie (nicht Reflex/Glitzer!), Flexfolie, Papier, Overheadfolie\\
+\messerRot & 0,3\,mm & 45$^{\circ}$ & 0,3\,mm & normale Beschriftungsfolie (nicht Reflex/Glitzer!), Flexfolie, Papier, Overheadfolie\\
 \hline
-Rot small & TODO & 45$^{\circ}$ & TODO & wie Rot, für kleinste Schriften\\
+\messerRotSmall & siehe Packung & 45$^{\circ}$ & siehe Packung & wie Rot, für kleinste Schriften\\
 \hline
-Blau & 0,3\,mm & 35$^{\circ}$ & 0,2\,mm &  besonders dünne Folien (ähnlich wie 45$^{\circ}$)\\
+\messerBlau & 0,3\,mm & 35$^{\circ}$ & 0,2\,mm &  besonders dünne Folien (ähnlich wie 45$^{\circ}$)\\
 \hline
-Grün & 0,5\,mm & 60$^{\circ}$ & 0,8\,mm & Flockfolien, reflektierende Folien, Karton, Filz (?) % TODO Filz behauptet Plottermeisterei.de, noch zu testen (Dicke?)
+\messerGruen & 0,5\,mm & 60$^{\circ}$ & 0,8\,mm & Flockfolien, reflektierende Folien, Karton, Filz (?) % TODO Filz behauptet Plottermeisterei.de, noch zu testen (Dicke?)
  \hfill\, % Workaround für Zeilenumbruch
  \mbox{dickes/weiches/zähes Material} \\
 \hline
-Weiß& 0,3\,mm & k.A. & k.A. & \todo{ergoogeln}\\
+\messerWeiss & 0,3\,mm & siehe Packung & siehe Packung & unbekannt, vor der Benutzung Betreuer:innen fragen\\
 \hline
 Stifte & 0\, mm & -- & -- & Malen\\
 \hline
-\end{tabular}
+\end{tabularx}
 
 { \footnotesize * Dieser Wert ist eine theoretische Obergrenze, die Einstellung muss je nach Material kleiner gewählt werden! Theoretisch maximale Eintauchtiefe = Offset $\cdot$ tan($\alpha$), sonst wird das effektive Offset negativ. }
 
 Bei der Messerauswahl ist zu beachten, dass ein größerer Schneidenwinkel für dickere Materialien und feine Ausschnitte besser geeignet ist, dafür aber schneller verschleißt.
+
+\paragraph{Gut zu wissen über die Messer}
+\begin{itemize}
+ \item Die Kappenfarbe ist kein Standard, jeder Hersteller färbt anders. Verlass dich auf Winkel und Offset auf der Packung und auf den Notizzettel am Plotter, nicht nur auf die Farbe.
+ \item Das Messer dreht sich im Halter frei mit, die Spitze läuft der Drehachse um das Offset hinterher. Der Plotter rechnet das an Ecken heraus. Stimmt das eingestellte Offset nicht, werden Ecken rund oder bekommen kleine Haken.
+ \item Ein stumpfes Messer erkennst du daran, dass die Folie trotz passender Einstellungen nicht ganz durchgeschnitten wird, die Schnittkanten ausfransen oder kleine Teile beim Entgittern mitreißen. Dann nicht einfach den Anpressdruck erhöhen, sondern den Betreuer:innen Bescheid geben.
+ \item Messer nie lose herumliegen lassen: entweder im Messerhalter oder mit Kappe in der Packung.
+\end{itemize}
 \newcommand{\messer}{
 \shadedraw[left color=black!80!white!90!blue,right color=black!30!white] (-0.7,3) -- (-0.7,0) -- (-.2,0) -- (-.2,-2) -- (.7,0) -- (.7,3) -- cycle;
 \fill[fill,color=black!20!white] (-.2,-2) -- (.7,0)  -- (.7,.3) --  (-.2,-1.7) -- cycle;
@@ -298,7 +316,7 @@ Auch für die Tiefeneinstellung muss der Messerhalter entnommen werden.
 \begin{enumerate}
  \item Zum Messerwechsel die silberne Halterungsschraube lösen und den Messerhalter entnehmen.
  \item Nimm den richtigen Messerhalter aus der Ablage neben dem Plotter.
- \item Nur wenn der Messer-Einsatz im Halter gewechselt werden soll: (Nur für Betreuer, normalerweise nicht nötig)
+ \item Nur wenn der Messereinsatz im Halter gewechselt werden soll: (nur für Betreuer:innen, normalerweise nicht nötig)
     \begin{enumerate}
     \item Oben auf den Stift drücken, damit das Messer unten herausschaut. 
     \item Dann, ohne sich zu stechen, das Messer herausziehen. 
@@ -306,7 +324,7 @@ Auch für die Tiefeneinstellung muss der Messerhalter entnommen werden.
     \item Neues Messer in den Messerhalter tun. Kappe des neuen Messers aufräumen.\\ Am Plotter einen Notizzettel anbringen, welches Messer eingesetzt ist (Typ, Offset, Tiefeneinstellung).
     \end{enumerate}
 \item Zur Einstellung der Tiefenbegrenzung zunächst den Messerhalter so drehen, dass die Messerspitze gerade im Messerhalter verschwindet. Wenn man jetzt den Messerhalter vorsichtig über ein Blatt Papier bewegt, soll er eine möglichst feine, aber gerade noch erkennbare Messerspur hinterlassen. Das entspricht einer Schnitttiefe von 0\,mm. 
-\item Drehe nun den unteren Ring am Messerhalter, um die richtige Eintauchtiefe einzustellen. Diese steht in der Material-Tabelle. \\Die auf dem Messerhalter angebrachten kleinen Striche entsprechen jeweils 0,05\,mm, eine ganze Umdrehung entspricht 0,5mm.
+\item Drehe nun den unteren Ring am Messerhalter, um die richtige Eintauchtiefe einzustellen. Diese steht in der Material-Tabelle. \\Die auf dem Messerhalter angebrachten kleinen Striche entsprechen jeweils 0,05\,mm, eine ganze Umdrehung entspricht 0,5\,mm.
 
 \begin{tikzpicture}[scale=0.7]
 \draw[draw=black!30] (0,0) -- (0,-1.4);
@@ -327,7 +345,7 @@ Auch für die Tiefeneinstellung muss der Messerhalter entnommen werden.
 
 
 \subsection{Offset}
-Abschließend musst Du noch das Offset des eingesetzten Messers im Plotter einstellen.
+Abschließend musst du noch das Offset des eingesetzten Messers im Plotter einstellen.
 Das Offset steht auf der Packung des Messers und auch in der Messer-Tabelle weiter oben.
 
 Stelle es am Plotter mit \plotterMenu \pfeil \plotterDisplay{Kondition} \pfeil \plotterDisplay{Offset} ein.
@@ -339,7 +357,7 @@ Stelle es am Plotter mit \plotterMenu \pfeil \plotterDisplay{Kondition} \pfeil \
 
 \subsection{Anpressdruck}
 Der Anpressdruck muss je nach Material eingestellt werden (siehe Tabelle weiter oben), dazu \plotterMenu so
-oft drücken, bis ungefähr folgendes angezeigt wird:\\
+oft drücken, bis ungefähr Folgendes angezeigt wird:\\
 \plotterDisplay{20cm/s\\100gf 0.250mm}
 
 Hierbei sind die \plotterDisplay{100gf} der eingestellte Anpressdruck, kontrolliere mit der gegebenen
@@ -373,7 +391,7 @@ Bei Problemen mit dem Schneiden prüfe zunächst, ob vorne im Messerhalter Schmu
 \subsection{Testschnitt}
 Falls du die Einstellungen testen möchtest, tue Folgendes:
 \begin{enumerate}
- \item Material einlegen wie weiter unten beschrieben
+ \item Material einlegen wie weiter oben beschrieben
  \item an eine unwichtige Stelle fahren und \plotterTest gedrückt halten. Der Plotter schneidet nun rechts oben neben der aktuellen Messerposition einen Kreis mit einem innenliegenden Quadrat.
 \item Ziehe nun den Kreis ab. Das Quadrat sollte nicht mit abgehen.
 \item Ziehe das Quadrat ab. Du solltest unter dem Quadrat eine feine Messerspur erkennen können. Wenn sie zu tief ist, ist der Druck zu hoch. Wenn sie kaum erkennbar ist, ist der Druck zu niedrig. Wenn eine Erhöhung des Drucks nur wenig bringt, ist die Tiefenbegrenzung falsch eingestellt.
@@ -402,7 +420,7 @@ Im richtigen Fall ist die Tiefenbegrenzung nur ein bisschen größer als die nor
 \messerhalter
 \end{tikzpicture}
 
-Wenn trotz richtigem Anpressdruck die Folie nicht sauber durchgeschnitten wird, ist womöglich die Tiefenbegrenzung zu knapp eingestellt. 
+Wenn trotz richtigen Anpressdrucks die Folie nicht sauber durchgeschnitten wird, ist womöglich die Tiefenbegrenzung zu knapp eingestellt. 
 
 Du musst jetzt selbst Schneideplotter spielen:
 Hole dir zum Ausprobieren ein Teststück Folie und lege darunter einen Karton oder eine weiche Schneidunterlage.
@@ -446,13 +464,13 @@ Wenn du das Material neu eingelegt hast, dann liegt der Nullpunkt dort, wo sich 
 befindet (linker Rand vom Material).
 Das ist so auch richtig und muss normalerweise nicht weiter geändert werden.
 
-Es kann nicht das komplette Material geschnitten werden, denn der Plotter hält 1,5-2\,cm Abstand zu allen Rändern.
+Es kann nicht das komplette Material geschnitten werden, denn der Plotter hält 1,5--2\,cm Abstand zu allen Rändern.
 
 Wenn du den Nullpunkt verändern möchtest, kannst du den Schneidewagen mit Hilfe der Pfeiltasten (\plotterPfeilLinks, \plotterPfeilRechts, \plotterPfeilRauf und \plotterPfeilRunter) verschieben.
-Dabei siehst du auf dem Display, wie viel Platz zum rechten Rand, bzw. bis zur hinteren Kante verbleibt.
+Dabei siehst du auf dem Display, wie viel Platz zum rechten Rand bzw. bis zur hinteren Kante verbleibt.
 Um den aktuellen Punkt als Nullpunkt zu definieren, halte \plotterOrigin für zwei Sekunden gedrückt.
 
-\section{Datei senden}
+\section{Datei senden} \label{dateiSenden}
 Die Datei muss eine Vektorgrafik (keine Pixel) sein.
 Bei allen Objekten wird die Kontur geschnitten, auch verdeckte Konturen.
 Das Motiv muss ggf. gespiegelt sein, bei T-Shirt-Folie siehe Kapitel \ref{VerarbeitungShirtfolie}.
@@ -461,14 +479,12 @@ Das Motiv muss ggf. gespiegelt sein, bei T-Shirt-Folie siehe Kapitel \ref{Verarb
 Laufen zwei Konturen spitz aufeinander zu, so wird der Plotter an der Ecke absetzen und dadurch einen winzigen Steg lassen.
 Wird der Pfad vorher verrundet, fährt der Plotter durch und schneidet so das ganze Material.
 
-Öffne die Datei möglichst mit dem Programm, das sie erstellt hat. Starte von dort das CutStudio Plugin:
+Öffne die Datei möglichst mit dem Programm, das sie erstellt hat. Starte von dort das CutStudio-Plugin:
 
 \begin{itemize}
  \item \textbf{Inkscape:} Datei öffnen, Erweiterungen\pfeil Roland CutStudio\pfeil Open. Dieses Plugin ist eine Eigenentwicklung, bitte melde alle Probleme mit der zugehörigen Datei an max@fablab.fau.de.
 
 \item \textbf{Illustrator:} In der Menüleiste auf Fenster $\rightarrow$ CutStudio PlugIn klicken. Es öffnet sich ein Unterfenster von Roland CutStudio mit einem großen \enquote{R} als Symbol. Auf das R draufklicken.
-
-\item \textbf{Corel:} \todo{Plugin-Knopf in Corel}
 
 \item \textbf{direkter Import:} Du kannst die Datei auch direkt in CutStudio importieren, starte dazu direkt CutStudio aus dem Startmenü. Der Import von CutStudio ist extrem wählerisch und funktioniert oft nicht.
 \end{itemize}
@@ -478,12 +494,12 @@ Wird der Pfad vorher verrundet, fährt der Plotter durch und schneidet so das ga
 In CutStudio auf Datei $\rightarrow$ Schneiden-Setup, Eigenschaften, Get from Machine, zweimal mit OK bestätigen.
 Sollte eine Fehlermeldung \enquote{The machine is not responding} auftauchen, muss der Plotter aus- und eingeschaltet werden.
 Wenn das auch noch nichts hilft, ausschalten und auf der rechten Seite den USB-Stecker sowie das Netzkabel ziehen.
-Jetzt den Eintaster betätigen, um eventuelle Spannung im Gerät abzubauen.
+Jetzt den Netzschalter betätigen, um eventuelle Spannung im Gerät abzubauen.
 Danach wieder alles einstecken und einschalten.
 
 \textbf{Achtung:} Der Nullpunkt des Plotters befindet sich, wenn er nicht verschoben wurde, links unten auf der Folie.
 Wenn deine Zeichnung nicht ebenfalls links unten auf der Seite beginnt, beginnt der Plotter nicht am Anfang der Folie, sondern verschwendet ein entsprechendes Stück!
-Dieses muss dann i.\,d.\,R. auch bezahlt werden.
+Dieses muss dann i.\,d.\,R. auch bezahlt werden (siehe Kapitel \ref{bezahlen}).
 
 Im CutStudio auf Schneiden klicken und die Folie wird ausgeschnitten (Plotter fängt sofort an zu arbeiten!).
 
@@ -494,12 +510,30 @@ Nutze stattdessen die Metallrille relativ weit vorne am Plotter, dort, wo die Hi
 Sobald der Schneidevorgang fertig ist, mit \plotterPfeilRunter die Folie so weit ausfahren, dass die gewünschte Schnittlinie über der Metallrille liegt und das gesamte Motiv davor liegt.
 Falls die Folie noch nicht eingelegt ist, lege sie in den Plotter und schiebe sie passend zur Metallrille.
 Führe dann von Hand ein Cuttermesser durch die Metallrille, um die Folie abzutrennen.
-Die Rolle danach mit \plotterPfeilRauf nach hinten ausfahren, mit dem Hebel die Anpressrollen lösen und die Rolle hinten entnehmen.
+Die Rolle danach mit \plotterPfeilRauf nach hinten ausfahren, mit dem Hebel die Andruckrollen lösen und die Rolle hinten entnehmen.
+
+Wie du anschließend bezahlst, steht in Kapitel \ref{bezahlen}.
 
 \section{Entgittern}
-Nach dem Schneiden legst Du das geschnittene Material mit der Schutzfolie nach unten auf eine flache Oberfläche und entfernst die Teile, die nicht zum fertigen Motiv gehören.
-Dazu eignet sich ein schmaler, aber nicht zu spitzer Gegenstand, damit Du die Schutzfolie nicht aus Versehen durchstößt, zum Beispiel ein Druckbleistift.
+Nach dem Schneiden legst du das geschnittene Material mit der Schutzfolie nach unten auf eine flache Oberfläche und entfernst die Teile, die nicht zum fertigen Motiv gehören.
+Dazu eignet sich ein schmaler, aber nicht zu spitzer Gegenstand, damit du die Schutzfolie nicht aus Versehen durchstößt, zum Beispiel ein Druckbleistift.
 Es sind auch zwei Spezialwerkzeuge vorrätig, die du mit entsprechender Vorsicht verwenden kannst: Ein Haken (wie vom Zahnarzt) und ein Stift mit Messerspitze.
+
+\section{Bezahlen} \label{bezahlen}
+Bitte vergiss nicht, nach dem Plotten zu bezahlen.
+Je nachdem, was du gemacht hast, setzt sich der Betrag aus folgenden Posten zusammen:
+
+\begin{itemize}
+ \item \textbf{Plotter:} Für die Benutzung des Schneideplotters fällt eine Maschinennutzungsgebühr an.
+ Die Höhe dieser Gebühr ist auf einem Etikett am Plotter vermerkt.
+ \item \textbf{Material:} Bezahlt wird das ganze verbrauchte Stück, also auch ungenutzte Bereiche (siehe Kapitel \ref{dateiSenden}).
+ Die Preise der T-Shirt-Folien sind auf Etiketten in den Rollen vermerkt.
+ Darin ist die Nutzungsgebühr des Plotters bereits enthalten.
+ \item \textbf{Eigenes Material:} Wenn du eine Folie selbst mitbringst, musst du nur die Nutzungsgebühr des Plotters zahlen.
+ \item \textbf{Restekiste:} Für Folien aus der Restekiste entfällt die Nutzungsgebühr, da sie bereits gezahlt wurde.
+ \item \textbf{T-Shirt-Presse:} Für die Benutzung der Presse ist zusätzlich ein Beitrag zu zahlen.
+ \item \textbf{Etikettenpapier:} Papier und Ausdruck kosten extra.
+\end{itemize}
 
 \section{Verarbeitung: Aufkleber}
 Mit PVC-Folie kann man Aufkleber erstellen.
@@ -511,66 +545,66 @@ Folge den Anweisungen, bis du fertig entgittert hast.
 Das Motiv muss seitenrichtig (nicht gespiegelt) ausgeschnitten werden, die Trägerfolie muss unten liegen. 
 
 \subsection{Application Tape anbringen}
-Nachdem du das Motiv geschnitten und entgittert hast, schneidest Du ein Stück Application Tape (Transferfolie) so aus, dass es das gesamte Motiv abdeckt, und legst es über das Motiv.
-Dabei kommt die Klebeseite des Application Tapes auf die Sichtseite des geschnittenen Motivs, so dass Du zum Schluss ein Sandwich mit den Schichten (von unten nach oben) \textit{Schutzfolie} - \textit{Geschnittenes Material} - \textit{Application Tape} hast.
+Nachdem du das Motiv geschnitten und entgittert hast, schneidest du ein Stück Application Tape (Transferfolie) so aus, dass es das gesamte Motiv abdeckt, und legst es über das Motiv.
+Dabei kommt die Klebeseite des Application Tapes auf die Sichtseite des geschnittenen Motivs, so dass du zum Schluss ein Sandwich mit den Schichten (von unten nach oben) \textit{Schutzfolie} -- \textit{geschnittenes Material} -- \textit{Application Tape} hast.
 Das Application Tape wird mit einer Rakel blasenfrei angedrückt, eventuelle Blasen mit einer Nadel vorsichtig aufstechen und glattstreichen.
 Danach nochmals kräftig andrücken.
 Du kannst danach das Trägermaterial und das Application Tape mit einem Messer zurechtschneiden.
 
-\subsection{Anbringen eines Aufklebers - Vorbereitung}
+\subsection{Anbringen eines Aufklebers -- Vorbereitung}
 Hilfsmittel:
 \textbullet Fensterreiniger
 \textbullet Spiritus
 \textbullet Saubere fusselfreie Tücher
 \textbullet Kreppband
-\textbullet Rakel (Hilfsweise: Eiskratzer mit glatter Kante)
-\textbullet Nadel (Zum Aufstechen von Blasen)
+\textbullet Rakel (hilfsweise: Eiskratzer mit glatter Kante)
+\textbullet Nadel (zum Aufstechen von Blasen)
 \textbullet Wasserwaage und/oder Metermaß
 
 Der Untergrund, auf dem der Aufkleber angebracht werden soll, muss sauber und fettfrei sein.
 Am besten mit Fensterputzmittel abwaschen, trocknen, und dann (sofern es der Untergrund verträgt) nochmal mit Spiritus drüberreiben und gut trocknen lassen.
 
-\subsection{Anbringen eines Aufklebers - Trockenmethode}
+\subsection{Anbringen eines Aufklebers -- Trockenmethode}
 Bei der Trockenmethode haftet der Aufkleber sofort nach dem Anbringen auf dem Untergrund.
-Du musst daher die Ausrichtung bestimmen, bevor Du die untere Folie abziehst.
+Du musst daher die Ausrichtung bestimmen, bevor du die untere Folie abziehst.
 
 \subsubsection{Ausrichten}
-Bei kleineren Aufklebern kann man das mit Augenmaß oder einer vorher auf dem Untergrund angebrachten Hilfslinie machen, dann die Trägerfolie (die untere Folie) abziehen, und den Aufkleber positionieren. 
+Bei kleineren Aufklebern kann man das mit Augenmaß oder einer vorher auf dem Untergrund angebrachten Hilfslinie machen, dann die Trägerfolie (die untere Folie) abziehen und den Aufkleber positionieren. 
 
-Bei größeren Aufklebern empfiehlt es sich, erst den Aufkleber mit der Trägerfolie und dem Application Tape auf dem Untergrund auszurichten, und dann mit Kreppband am Application Tape zu fixieren, um Verrutschen zu vermeiden.
+Bei größeren Aufklebern empfiehlt es sich, erst den Aufkleber mit der Trägerfolie und dem Application Tape auf dem Untergrund auszurichten und dann mit Kreppband am Application Tape zu fixieren, um Verrutschen zu vermeiden.
 
-Bitte beachte, dass das Arbeiten mit einer Wasserwaage nur funktioniert, wenn Du sicher sein kannst, dass das Objekt, auf dem Du den Aufkleber anbringst, selbst auch wirklich waagerecht steht.
+Bitte beachte, dass das Arbeiten mit einer Wasserwaage nur funktioniert, wenn du sicher sein kannst, dass das Objekt, auf dem du den Aufkleber anbringst, selbst auch wirklich waagerecht steht.
 Dies ist bei Autos zum Beispiel nicht sichergestellt.
 Besser ist es, mit einem Maßband relativ zu einer Kante am Objekt auszurichten.
 
 \subsubsection{Trägermaterial abziehen}
-Danach ziehst Du von einer Seite ein Stück des Trägermaterials im \SI{180}{\degree}-Winkel ab, und bringst diesen Teil des Aufklebers durch Anrubbeln an.
+Danach ziehst du von einer Seite ein Stück des Trägermaterials im \SI{180}{\degree}-Winkel ab und bringst diesen Teil des Aufklebers durch Anrubbeln an.
 Das Application Tape wird noch nicht entfernt.
 Du kannst jetzt langsam weitere Teile des Trägermaterials abziehen (\SI{180}{\degree}-Winkel!) und anrubbeln,
-bis Du schließlich das gesamte Trägermaterial entfernt hast.
+bis du schließlich das gesamte Trägermaterial entfernt hast.
 
-Jetzt rubbelst Du den gesamten Aufkleber noch einmal sorgfältig mit der Rakel an.
+Jetzt rubbelst du den gesamten Aufkleber noch einmal sorgfältig mit der Rakel an.
 Achte besonders darauf, dass Ecken und Kanten gut haften.
-Falls Luftblasen sichtbar sind, versuchst Du diese vorsichtig auf kürzestem Weg zur Seite des Aufklebers zu drücken.
-Falls das nicht möglich ist, stichst Du sie durch das Application Tape hindurch mit einer Nadel auf und rubbelst sie dann glatt.
+Falls Luftblasen sichtbar sind, versuchst du diese vorsichtig auf kürzestem Weg zur Seite des Aufklebers zu drücken.
+Falls das nicht möglich ist, stichst du sie durch das Application Tape hindurch mit einer Nadel auf und rubbelst sie dann glatt.
 
 \subsubsection{Application Tape abziehen}
-Abschließend wird das Application Tape vorsichtig im \SI{180}{\degree}-Winkel abgezogen, und danach der gesamte Aufkleber noch ein letztes Mal mit der Rakel angedrückt.
+Abschließend wird das Application Tape vorsichtig im \SI{180}{\degree}-Winkel abgezogen und danach der gesamte Aufkleber noch ein letztes Mal mit der Rakel angedrückt.
 
-\subsection{Anbringen eines Aufklebers - Nassmethode}
-Die Nassmethode funktioniert nur auf glatten wasserundurchlässigen Untergründen.
+\subsection{Anbringen eines Aufklebers -- Nassmethode}
+Die Nassmethode funktioniert nur auf glatten, wasserundurchlässigen Untergründen.
 Sie erlaubt dir, die Positionierung des Aufklebers nach dem Anbringen noch zu justieren. Dafür dauert das Trocknen nach dem Anbringen mehrere Stunden.
 
-Nach der Reinigung des Untergrundes bringst Du dazu aus einer Sprühflasche eine feine Schicht destilliertes Wasser auf deinen Untergrund auf.
+Nach der Reinigung des Untergrundes bringst du dazu aus einer Sprühflasche eine feine Schicht destilliertes Wasser auf deinen Untergrund auf.
 Du kannst danach das Trägermaterial abziehen (\SI{180}{\degree}-Winkel!) und den Aufkleber samt Application Tape auf dem Untergrund aufbringen.
 Er lässt sich in diesem Stadium noch verschieben und positionieren.  
 
-Danach drückst Du den Aufkleber einmal vorsichtig mit der Rakel an, ohne ihn zu verschieben, prüfst auf Luftblasen (und drückst diese zur Seite aus dem Aufkleber) und lässt danach den Aufkleber samt dem Application Tape trocknen.
+Danach drückst du den Aufkleber einmal vorsichtig mit der Rakel an, ohne ihn zu verschieben, prüfst auf Luftblasen (und drückst diese zur Seite aus dem Aufkleber) und lässt danach den Aufkleber samt dem Application Tape trocknen.
 Wie lange das dauert, kann nicht pauschal gesagt werden, es hängt stark von der Luftfeuchte und den Temperaturen der Luft und des Untergrundes ab.
 Rechne aber mit mehreren Stunden.
 
-Nachdem der Aufkleber getrocknet ist, drückst Du ihn mit der Rakel gründlich an, und kannst danach das Application Tape im \SI{180}{\degree}-Winkel abziehen.
-Abschließend drückst Du den Aufkleber noch ein letztes Mal an. 
+Nachdem der Aufkleber getrocknet ist, drückst du ihn mit der Rakel gründlich an und kannst danach das Application Tape im \SI{180}{\degree}-Winkel abziehen.
+Abschließend drückst du den Aufkleber noch ein letztes Mal an. 
 
 \section{Verarbeitung: Shirt-Folie} \label{VerarbeitungShirtfolie}
 \subsection{Besonderheiten}
@@ -581,7 +615,7 @@ Nur die bunte Folie wird geschnitten.
  \item Bunte Seite nach oben einlegen! Oft ist dies die \emph{weniger} glänzende Seite. Da die Trägerfolie durchsichtig ist, kann man es nicht so einfach erkennen.
  \item Motiv muss \emph{gespiegelt} ausgeschnitten werden. (Da in die Rückseite des Materials geschnitten wird.)
  \item Nur die Länge kostet Geld, d.\,h. das Motiv auf Querformat drehen. Die Folie hat keine bevorzugte Verarbeitungsrichtung, d.\,h. längs oder quer ist egal.
- \item Folgende Farben der Flexfolie sind schwieriger zu verarbeiten und deshalb nur für größere Schriften (laut Hersteller ab 2\,cm) geeignet: hellblau, sämtliche Neonfarben und nachleuchtende Folie
+ \item Folgende Farben der Flexfolie sind schwieriger zu verarbeiten und deshalb nur für größere Schriften (laut Hersteller ab 2\,cm) geeignet: Hellblau, sämtliche Neonfarben und nachleuchtende Folie.
  \item Ein bisschen Rand ist zur Verarbeitung nötig. Auf der linken Seite lässt der Plotter bereits selbst genug Rand, da man den Nullpunkt nicht ganz auf die Kante setzen kann.
 \end{itemize}
 
@@ -592,11 +626,11 @@ Das weitere Vorgehen ist gleich dem Schneideplotten von anderen Materialien.
 All dies ist am Anfang dieser Einweisung beschrieben und wird deshalb hier nicht wiederholt.
 Bitte darauf achten, dass Andruckkraft und Messertyp richtig gewählt sind.
 
-Für Flexfolien werden normale, rote Messer benötigt.
+Für Flexfolien werden normale, rote Messer (\messerRot) benötigt.
 Andruckkraft ist moderat zu wählen.
 Die Schnitttiefe ist so anzupassen, dass der Träger nicht durchtrennt wird.
 
-Für Flockfolien wird das grüne Messer benötigt (siehe die Tabellen in Abschnitt \ref{subsec:einstellungen}).
+Für Flockfolien wird das grüne Messer (\messerGruen) benötigt (siehe die Tabellen in Abschnitt \ref{subsec:einstellungen}).
 Der Messerwechsel ist in Abschnitt \ref{messerwechsel} beschrieben.
 
 \subsection{Pressen}
@@ -612,7 +646,7 @@ Das T-Shirt wird jetzt gerade und mittig eingelegt.
 Dann die Folie richtig herum darauflegen: Schrift lesbar, buntes Material am T-Shirt, obendrüber das klare Trägermaterial.
 Folie ausrichten (mittig zum T-Shirt? richtige Höhe?) und die weiße Antihaftmatte darauflegen.
 
-Warten, bis die Temperatur erreicht ist und die Presse mit viel Kraft schließen, bis sie einrastet.
+Warten, bis die Temperatur erreicht ist, und die Presse mit viel Kraft schließen, bis sie einrastet.
 Nach Ertönen des Signals die Presse rasch öffnen.
 Nun die Trägerfolie abziehen, solange sie noch warm ist (bei normaler Flex- und Flockfolie).
 Ausnahme: Bei Flexfolie in Hellblau und Neonfarben die Folie erst im lauwarmen bis kalten Zustand abziehen.
@@ -622,16 +656,8 @@ Antihaftmatte auflegen und die Presse für 2 Sekunden schließen.
 Wenn jetzt zu lange gepresst wird, bleibt die Matte auf dem T-Shirt kleben oder die Folie \enquote{verläuft}.
 
 \subsection{Benutzungshinweise}
-\todo{Bezahlung zu einem Kapitel für alle Folientypen machen und hier nur drauf verweisen.}
 Dein T-Shirt ist jetzt fertig.
-Bitte das Bezahlen nicht vergessen.
-Die Preise der T-Shirtfolien sind auf Etiketten in den Rollen vermerkt.
-Darin enthalten ist die Maschinennutzungsgebühr des Schneideplotters.
-(Die Höhe dieser Gebühr ist auf einem Etikett am Plotter vermerkt.)
-Wenn du eine Folie selbst mitbringst, musst du nur diese Nutzungsgebühr zahlen.
-Für Folien aus der Restekiste entfällt diese Gebühr, da sie bereits gezahlt wurde.
-
-Zusätzlich ist für die Benutzung der Presse ein Beitrag zu zahlen.
+Bitte vergiss das Bezahlen nicht: Folie und Presse, siehe Kapitel \ref{bezahlen}.
 
 \section{Verarbeitung: Etikettenpapier bedrucken und schneiden}
 
@@ -640,9 +666,9 @@ Der Plotter kann spezielle Druckmarken erkennen und so genau passend zur ausgedr
 Du solltest dunkle Hintergründe ein paar Millimeter größer machen als die eigentliche Schnittlinie, damit es nicht zu unschönen weißen Rändern kommt, wenn der Plotter minimal daneben schneidet.
 
 \begin{enumerate}
-\item Du benötigst: Selbstklebendes Etikettenpapier A4, ohne vorgeschnittene Etiketten, laserdrucker-geeignet. (Normalerweise im Lab vorrätig.)
-\item Nutzbarer Bereich: 160 x 200 mm, also deutlich kleiner als die A4-Seite.
-\item Inkscape --- neues Dokument --- Erweiterungen / Roland Cutstudio / Insert Cropmarks. (Ähnlich wie hier beschrieben geht es auch in Illustrator.)
+\item du benötigst: Selbstklebendes Etikettenpapier A4, ohne vorgeschnittene Etiketten, für Laserdrucker geeignet. (Normalerweise im Lab vorrätig.)
+\item Nutzbarer Bereich: 160 $\times$ 200\,mm, also deutlich kleiner als die A4-Seite.
+\item Inkscape --- neues Dokument --- Erweiterungen / Roland CutStudio / Insert Cropmarks. (Ähnlich wie hier beschrieben geht es auch in Illustrator.)
 \item Druck-Grafik auf Ebene \enquote{Print} einfügen
 \item Schnittlinien auf Ebene \enquote{Cut} einfügen
 \item Ebene \enquote{Cut} ausblenden.
@@ -653,24 +679,24 @@ Du solltest dunkle Hintergründe ein paar Millimeter größer machen als die eig
     \item Am PC folgende Druckereinstellung setzen: Papiertyp = Etiketten (!!! sonst kann der Drucker Schaden nehmen !!!) und Papierfach = manueller Einzug.
     \end{itemize}
 \item Drucken. Bei Problemen mit dem Drucken die Datei als PDF-Kopie speichern und das PDF drucken.
-\item Das Drucken kostet extra - Bezahlen nicht vergessen.
+\item Das Drucken kostet extra (siehe Kapitel \ref{bezahlen}).
 \item Am Plotter Messertyp, Andruckkraft, Offset und Schnitttiefe (!) korrekt einstellen wie hier in der Einweisung beschrieben.
 \item Papier in Plotter einlegen, Modus \enquote{Blatt}.
 \item Ebene \enquote{Cut} einblenden und \enquote{Print} ausblenden.
-\item Alles auswählen (Strg A)
-\item Erweiterungen / Roland Cutstudio / Open in Cutstudio.
-\item In Cutstudio sollten nun die Schnittmarken (grau) mit angezeigt werden.
+\item Alles auswählen (Strg+A)
+\item Erweiterungen / Roland CutStudio / Open in CutStudio.
+\item In CutStudio sollten nun die Schnittmarken (grau) mit angezeigt werden.
 \item Plotterkopf mit den Tasten am Plotter \plotterPfeilLinks \plotterPfeilRunter nach ganz links unten bewegen.
-\item In Cutstudio: Datei - Schneiden.
-\item Am Ende in Cutstudio die Einstellung \enquote{Datei - Drucken und schneiden} wieder ausschalten, weil sich Cutstudio diese Einstellung manchmal merkt und das die nächsten Benutzer verwirrt.
-\item Bezahlen: Papier + Ausdrucken + Plottern.
+\item In CutStudio: Datei \pfeil{} Schneiden.
+\item Am Ende in CutStudio die Einstellung \enquote{Datei \pfeil{} Drucken und schneiden} wieder ausschalten, weil sich CutStudio diese Einstellung manchmal merkt und das die nächsten Benutzer verwirrt.
+\item Bezahlen: Papier + Ausdrucken + Plottern (siehe Kapitel \ref{bezahlen}).
 \end{enumerate}
 
 \section{Verarbeitung: Glitzersteine applizieren}
 \todo{testen und vollständig beschreiben}
 Mit Hilfe des Plotters ist es möglich, aus dicker Folie eine Schablone mit runden Löchern zu schneiden.
 Diese wird auf Acryl aufgeklebt und in eine Kiste gelegt.
-Mit einer Bürste können Heißkleber-beschichtete Glitzersteine in das Motiv eingebürstet werden.
+Mit einer Bürste können mit Heißkleber beschichtete Glitzersteine in das Motiv eingebürstet werden.
 Zum Übertrag wird die alte Transferfolie eines T-Shirt-Drucks genutzt.
 Nun können die Steine auf ein T-Shirt heiß aufgetragen werden.
 \section{Verarbeitung: Siebdruck}
@@ -685,18 +711,31 @@ Nun kann das Sieb ganz normal zum Siebdruck verwendet werden.
 \section{Verarbeitung: Zeichnungen plotten}
 \todo{testen und vollständig beschreiben}
 Mit dem Plotter ist prinzipiell auch Zeichnen möglich.
-Dazu muss statt dem Messer ein Stift eingesetzt werden.
+Dazu muss statt des Messers ein Stift eingesetzt werden.
 Grundsätzlich gilt beim Wechsel des Stiftes/Messers, den Messerhalter vorsichtig zu behandeln und gut abzustützen.
 
 Der Messerwechsel ist in Kapitel \ref{messerwechsel} beschrieben.
-Prinzipiell wird einfach statt dem Messer ein Stifthalter eingesetzt.
+Prinzipiell wird einfach statt des Messers ein Stifthalter eingesetzt.
 Dieser lagert in der Werkzeughalterung an der Rückkante des Plotters.
 
 Der Anpressdruck ist grundsätzlich so einzustellen, dass der Stift gerade noch ohne Aussetzer zeichnet.
 Bei stärker verschlissenen Stiftspitzen kann der Anpressdruck erhöht werden.
 Wenn Schmierer und Nebenstriche entstehen, ist der Stift endgültig verschlissen.
 
-\todo{wie hoch soll der Stift normal über dem Papier schweben? Wenn man es falsch macht, klappert es fürchterlich}
+\paragraph{Höhe des Stifts}
+Der Plotter hebt den Stift zwischen zwei Linien an und senkt ihn zum Zeichnen wieder ab.
+Der Stift muss deshalb so im Stifthalter sitzen, dass seine Spitze im angehobenen Zustand \emph{knapp} über dem Papier steht, es aber nicht berührt.
+\begin{itemize}
+ \item Steht die Spitze zu weit über dem Papier, schlägt der Stift bei jedem Absenken mit Schwung auf. Der Plotter klappert dann laut, am Anfang der Linien entstehen Punkte, und die Spitze nutzt sich schnell ab. Steht sie viel zu hoch, erreicht der Stift das Papier gar nicht.
+ \item Steht die Spitze zu tief, schleift der Stift auch beim Verfahren über das Papier und zieht Striche, wo keine hingehören.
+\end{itemize}
+So stellst du die Höhe ein:
+\begin{enumerate}
+ \item Stifthalter einsetzen und festschrauben, wie beim Messerwechsel. Im Ruhezustand ist der Stift angehoben.
+ \item Den Stift im Halter so weit nach unten schieben, bis die Spitze das Papier gerade berührt. Dann ein kleines Stück zurückziehen und den Stift festklemmen.
+ \item Mit \plotterTest an einer unwichtigen Stelle einen Testplot machen. Richtig ist es, wenn der Plotter leise zeichnet und die Linien ohne Punkte am Anfang und ohne Verbindungsstriche dazwischen erscheinen.
+ \item Klappert es laut, den Stift ein kleines Stück tiefer setzen. Zieht er Verbindungsstriche, ein kleines Stück höher. Den Anpressdruck dabei nicht höher als nötig einstellen (Richtwerte in der Tabelle in Kapitel~\ref{subsec:einstellungen}).
+\end{enumerate}
 
 Ein interessantes Programm zur Pfaderzeugung aus Bildern gibt es hier: \url{http://www.evilmadscientist.com/2012/stipplegen2/}
 
@@ -707,12 +746,6 @@ Schraffieren geht in Inkscape mit dem Pfad-Effekt Schraffur, der aber nicht auf 
 \listoftodos
 
 \newpage
-\appendix
-\section{Copyright}
-Der Quelltext dieser Einweisung, ohne die Bilder von Roland, ist unter CC-BY-SA 3.0 Unported lizenziert. Solange kein freier Ersatz für die Roland-Bilder vorliegt, kann das gesamte Dokument leider nicht frei verwendet werden.
-%\ccLicense{schneideplotter-einweisung}{Einweisung Schneideplotter}
-\todo{freien Ersatz für die Bilder finden}
-
-Dieses Dokument stammt aus fau-fablab/schneideplotter-einweisung@\Revision{}.
+\ccLicense{schneideplotter-einweisung}{Einweisung Schneideplotter}
 
 \end{document}

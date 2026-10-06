@@ -1,0 +1,103 @@
+% Aufbau des Schneideplotters Roland CAMM-1 Servo GX-24, Ansicht von vorn.
+% Eigene schematische Zeichnung (TikZ), keine Vorlage aus der Roland-Anleitung.
+% Lizenz wie das Dokument: CC BY-SA 3.0
+\begin{tikzpicture}[x=1cm, y=1cm, font=\sffamily\footnotesize,
+	gehaeuse/.style={draw=black!75, fill=black!8, line width=0.6pt},
+	teil/.style={draw=black!75, line width=0.5pt},
+	markierung/.style={fill=black!45},
+	beschriftung/.style={align=left, inner sep=1pt, text width=3.6cm},
+	zeiger/.style={draw=black!80, line width=0.4pt, -{Circle[length=2pt]}},
+	]
+	% --- Gehäuse ---
+	\draw[gehaeuse, rounded corners=2mm] (0,0) rectangle (16,4.2);      % Grundkörper
+	\draw[gehaeuse, fill=black!14, rounded corners=1.5mm] (-0.3,-0.1) rectangle (0.9,4.4); % linke Seitenwange
+	\draw[gehaeuse, fill=black!14, rounded corners=1.5mm] (12.6,-0.1) rectangle (16.3,4.4); % rechter Block mit Bedienfeld
+
+	% Einzugshebel hinten links (gestrichelt, da hinter dem Gerät)
+	\draw[teil, dashed, line width=0.9pt] (0.3,4.4) -- (-0.2,5.3);
+	\fill[black!60] (-0.2,5.3) circle (1.3mm);
+
+	% --- Oberer Balken mit Kontrollmarkierungen ---
+	\draw[teil, fill=black!20] (0.9,3.0) rectangle (12.6,3.6);
+	\fill[markierung] (1.1,3.42) rectangle (2.9,3.56);                    % große Markierung links
+	\foreach \x in {5.2,7.4,9.6,11.4}
+		\fill[markierung] (\x,3.42) rectangle (\x+0.7,3.56);              % vier kleine Markierungen
+
+	% --- Auflage, Greifrollen, Schneidekante ---
+	\draw[teil, fill=white] (0.9,0.9) rectangle (12.6,3.0);               % Auflage
+	\foreach \a/\b in {1.1/2.9, 5.2/5.9, 7.4/8.1, 9.6/10.3, 11.4/12.1}
+		\draw[teil, pattern=north east lines, pattern color=black!45]
+			(\a,2.15) rectangle (\b,2.75);                                % Greifrollen unter den Markierungen
+	\fill[cyan!35] (0.9,1.55) rectangle (12.6,1.75);                     % Schneidekante (Gummistreifen)
+	\draw[teil] (0.9,1.55) -- (12.6,1.55) (0.9,1.75) -- (12.6,1.75);
+
+	% Andruckrollen
+	\foreach \x in {1.6,11.75}
+		\draw[teil, fill=black!55, rounded corners=0.6mm] (\x-0.25,2.75) rectangle (\x+0.25,3.25);
+
+	% Schneidwagen mit Messerhalter
+	\draw[teil, fill=black!30, rounded corners=1mm] (4.0,2.0) rectangle (4.9,3.85);
+	\draw[teil, fill=black!60] (4.33,1.62) rectangle (4.57,2.0);
+
+	% Hilfslinien vorn
+	\draw[black!70, line width=0.8pt, dash pattern=on 2mm off 1mm] (1.1,0.55) -- (1.1,0.95);
+	\draw[black!70, line width=0.8pt, dash pattern=on 2mm off 1mm] (12.4,0.55) -- (12.4,0.95);
+	\draw[black!40] (0.9,0.75) -- (12.6,0.75);
+
+	% --- Bedienfeld ---
+	\draw[teil, fill=black!25, rounded corners=1mm] (12.9,0.5) rectangle (16.0,4.0);
+	\draw[teil, fill=green!8!black!5] (13.15,3.25) rectangle (15.75,3.8);   % Display
+	\node[font=\ttfamily\tiny] at (14.45,3.52) {SELECT SHEET};
+	\tikzset{taste/.style={draw=black!75, fill=white, rounded corners=0.5mm, minimum width=0.62cm,
+		minimum height=0.32cm, inner sep=0pt, font=\sffamily\fontsize{4}{4}\selectfont}}
+	\node[taste] at (13.5,2.85) {TEST};
+	\node[taste] at (14.45,2.85) {ORIGIN};
+	\node[taste] at (15.4,2.85) {PAUSE};
+	\node[taste] at (13.5,2.35) {MENU};
+	\node[taste] at (13.5,1.85) {FORCE};
+	\node[taste] at (15.4,1.85) {ENTER};
+	\node[taste, minimum width=0.38cm] at (14.45,2.4) {$\blacktriangle$};
+	\node[taste, minimum width=0.38cm] at (14.45,1.75) {$\blacktriangledown$};
+	\node[taste, minimum width=0.38cm] at (14.0,2.08) {$\blacktriangleleft$};
+	\node[taste, minimum width=0.38cm] at (14.9,2.08) {$\blacktriangleright$};
+	% Feinjustierung (unten links) und Netzschalter (unten rechts)
+	\draw[teil, fill=white] (13.45,0.95) circle (2.2mm);
+	\draw[teil] (13.45,0.95) -- ++(80:2.2mm);
+	\draw[draw=blue!70!black, line width=1.2pt, fill=white] (15.45,0.95) circle (2.4mm);
+	% Anschlüsse rechts hinten (gestrichelt)
+	\draw[teil, dashed] (16.3,1.2) rectangle (16.6,1.7);
+	\draw[teil, dashed] (16.3,2.0) rectangle (16.6,2.3);
+
+	% --- Beschriftungen oben ---
+	\node[beschriftung, anchor=south west] (einzug) at (-1.0,6.0)
+		{\textbf{Einzugshebel}, hinten links\\ unten: Rollen lose\\ oben: Material fest};
+	\draw[zeiger] (einzug.south west) ++(0.4,0) -- (-0.2,5.45);
+	\node[beschriftung, anchor=south west] (rolle) at (2.9,6.0)
+		{\textbf{Andruckrollen} (links und rechts)\\ drücken das Material auf die Greifrollen};
+	\draw[zeiger] (rolle.south west) ++(0.3,0) -- (1.6,3.25);
+	\node[beschriftung, anchor=south west] (marke) at (6.8,6.0)
+		{\textbf{Kontrollmarkierungen}\\ hier müssen die Andruckrollen stehen};
+	\draw[zeiger] (marke.south west) ++(0.3,0) -- (2.0,3.5);
+	\draw[zeiger] (marke.south west) ++(0.3,0) -- (7.75,3.5);
+	\node[beschriftung, anchor=south west] (wagen) at (10.7,6.0)
+		{\textbf{Schneidwagen}\\ trägt das Messer, fährt nach links und rechts};
+	\draw[zeiger] (wagen.south west) ++(0.3,0) -- (4.45,3.85);
+
+	% --- Beschriftungen unten ---
+	\node[beschriftung, anchor=north west] (hilf) at (-1.0,-0.8)
+		{\textbf{Hilfslinien} (links und rechts)\\ Material gerade einlegen, Vorderkante bis hierhin};
+	\draw[zeiger] (hilf.north west) ++(0.4,0) -- (1.1,0.6);
+	\node[beschriftung, anchor=north west] (greif) at (2.9,-0.8)
+		{\textbf{Greifrollen}\\ bewegen das Material vor und zurück};
+	\draw[zeiger] (greif.north west) ++(0.3,0) -- (5.55,2.2);
+	\node[beschriftung, anchor=north west] (kante) at (6.8,-0.8)
+		{\textbf{Schneidekante}\\ hellblauer Gummistreifen, Nullpunkt bei \enquote{ROLLE}};
+	\draw[zeiger] (kante.north west) ++(0.3,0) -- (8.8,1.65);
+	\node[beschriftung, anchor=north west, text width=4.2cm] (panel) at (10.7,-0.8)
+		{\textbf{Bedienfeld} mit Display und Tasten\\
+		 unten links: Feinjustierung Auflagedruck (auf 0)\\
+		 unten rechts: Netzschalter (leuchtet blau)\\
+		 rechte Seite hinten: USB und Netzkabel};
+	\draw[zeiger] (panel.north west) ++(0.3,0) -- (13.45,0.95);
+	\draw[zeiger] (panel.north west) ++(0.3,0) -- (15.45,0.95);
+\end{tikzpicture}
