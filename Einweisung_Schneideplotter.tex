@@ -46,6 +46,18 @@
 \newcommand{\plotterKnopf}[1]{\knopf{plotterknopf}{#1}}
 \newcommand{\plotterDisplay}[1]{\texttt{#1}}
 
+% Messer nach Kappenfarbe: Farbfeld und Name in der Farbe der Kappe
+% (Weiß als Feld mit Rand und schwarzer Schrift, sonst unlesbar)
+\definecolor{kapperot}{HTML}{C62828}
+\definecolor{kappeblau}{HTML}{1565C0}
+\definecolor{kappegruen}{HTML}{2E7D32}
+\newcommand{\kappenfeld}[2]{\tikz[baseline=-0.6ex]\draw[draw=#2, fill=#1, line width=0.4pt] (0,0) circle (0.9ex);}
+\newcommand{\messerRot}{\kappenfeld{kapperot}{kapperot}\,\textcolor{kapperot}{\textbf{Rot}}}
+\newcommand{\messerRotSmall}{\kappenfeld{kapperot}{kapperot}\,\textcolor{kapperot}{\textbf{Rot small}}}
+\newcommand{\messerBlau}{\kappenfeld{kappeblau}{kappeblau}\,\textcolor{kappeblau}{\textbf{Blau}}}
+\newcommand{\messerGruen}{\kappenfeld{kappegruen}{kappegruen}\,\textcolor{kappegruen}{\textbf{Grün}}}
+\newcommand{\messerWeiss}{\kappenfeld{white}{black!50}\,\textbf{Weiß}}
+
 % einzelne Knöpfe
 \newcommand{\plotterTest}{\plotterKnopf{TEST}}
 \newcommand{\plotterOrigin}{\plotterKnopf{ORIGIN}}
@@ -217,12 +229,12 @@ Das Offset kannst du später anhand des Messertyps herausfinden.
 \textbf{Material} & \textbf{Andruck} & \textbf{Speed} & \textbf{Messer} & \textbf{Schnitttiefenbegrenzung}\\
 \hline
 \hline
-PVC-Beschriftungsfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
-Flockfolie & 100gf & 20cm/s & Grün & 0,3\,mm ** \\ \hline
-Flexfolie & 100gf & 20cm/s & Rot & 0,15\,mm ? \\ \hline
-250g Papier schneiden & 250gf & 20cm/s & Rot & ausprobieren \\ \hline
-250g Papier anreißen & 100gf & 20cm/s & Rot & ausprobieren\\ \hline
-Etikettenpapier schneiden & ca. 90gf & 20cm/s & Rot & ausprobieren \\ \hline
+PVC-Beschriftungsfolie & 100gf & 20cm/s & \messerRot & 0,15\,mm ? \\ \hline
+Flockfolie & 100gf & 20cm/s & \messerGruen & 0,3\,mm ** \\ \hline
+Flexfolie & 100gf & 20cm/s & \messerRot & 0,15\,mm ? \\ \hline
+250g Papier schneiden & 250gf & 20cm/s & \messerRot & ausprobieren \\ \hline
+250g Papier anreißen & 100gf & 20cm/s & \messerRot & ausprobieren\\ \hline
+Etikettenpapier schneiden & ca. 90gf & 20cm/s & \messerRot & ausprobieren \\ \hline
 Stiftplot Fineliner & 30gf & 30cm/s & Stift & --\\ \hline
 Stiftplot Bleistift HB & 250gf & 20cm/s & Stift & --\\ \hline
 \hline
@@ -237,17 +249,17 @@ Das Offset zum jeweiligen Messer steht auf der Packung und als Richtwert auch hi
 \textbf{Kappenfarbe} & \textbf{Offset} & \textbf{Grad} & \textbf{max. Tiefe}* & \textbf{Geeignet für...}\\
 \hline
 \hline
-Rot & 0,3\,mm & 45$^{\circ}$ & 0,3\,mm & normale Beschriftungsfolie (nicht Reflex/Glitzer!), Flexfolie, Papier, Overheadfolie\\
+\messerRot & 0,3\,mm & 45$^{\circ}$ & 0,3\,mm & normale Beschriftungsfolie (nicht Reflex/Glitzer!), Flexfolie, Papier, Overheadfolie\\
 \hline
-Rot small & siehe Packung & 45$^{\circ}$ & siehe Packung & wie Rot, für kleinste Schriften\\
+\messerRotSmall & siehe Packung & 45$^{\circ}$ & siehe Packung & wie Rot, für kleinste Schriften\\
 \hline
-Blau & 0,3\,mm & 35$^{\circ}$ & 0,2\,mm &  besonders dünne Folien (ähnlich wie 45$^{\circ}$)\\
+\messerBlau & 0,3\,mm & 35$^{\circ}$ & 0,2\,mm &  besonders dünne Folien (ähnlich wie 45$^{\circ}$)\\
 \hline
-Grün & 0,5\,mm & 60$^{\circ}$ & 0,8\,mm & Flockfolien, reflektierende Folien, Karton, Filz (?) % TODO Filz behauptet Plottermeisterei.de, noch zu testen (Dicke?)
+\messerGruen & 0,5\,mm & 60$^{\circ}$ & 0,8\,mm & Flockfolien, reflektierende Folien, Karton, Filz (?) % TODO Filz behauptet Plottermeisterei.de, noch zu testen (Dicke?)
  \hfill\, % Workaround für Zeilenumbruch
  \mbox{dickes/weiches/zähes Material} \\
 \hline
-Weiß& 0,3\,mm & siehe Packung & siehe Packung & unbekannt, vor der Benutzung Betreuer:innen fragen\\
+\messerWeiss & 0,3\,mm & siehe Packung & siehe Packung & unbekannt, vor der Benutzung Betreuer:innen fragen\\
 \hline
 Stifte & 0\, mm & -- & -- & Malen\\
 \hline
@@ -581,7 +593,7 @@ Das weitere Vorgehen ist gleich dem Schneideplotten von anderen Materialien.
 All dies ist am Anfang dieser Einweisung beschrieben und wird deshalb hier nicht wiederholt.
 Bitte darauf achten, dass Andruckkraft und Messertyp richtig gewählt sind.
 
-Für Flexfolien werden normale, rote Messer benötigt.
+Für Flexfolien werden normale, rote Messer (\messerRot) benötigt.
 Andruckkraft ist moderat zu wählen.
 Die Schnitttiefe ist so anzupassen, dass der Träger nicht durchtrennt wird.
 
