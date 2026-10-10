@@ -91,6 +91,7 @@
 % Inhaltsverzeichnis wie in der 3D-Drucker-Einweisung: nach Kapitel 1 auf eigener Seite
 \newpage
 \setcounter{tocdepth}{2} % nur Kapitel und Unterkapitel, wie in der 3D-Drucker-Einweisung
+\RedeclareSectionCommand[tocbeforeskip=0.4em plus 1pt]{section} % weniger Abstand zwischen Kapiteln im Inhaltsverzeichnis, damit es auf eine Seite passt
 {\linespread{1}\selectfont\tableofcontents} % normaler Zeilenabstand, damit es auf eine Seite passt
 \newpage
 
@@ -137,7 +138,9 @@ Nach dem Plotten ist darauf zu achten, dass sehr filigrane Strukturen beim Ablö
 Bei dem Schneideplotter handelt es sich um einen Roland CAMM-1 Servo GX-24.
 
 \begin{center}
- \includegraphics[width=0.8\textwidth]{img/plotter-foto.jpg} \\[1mm]
+ % leicht beschnitten (Wand und Tisch weg), damit Foto und Skizze auf eine Seite passen;
+ % trim in bp bei 1600x1067 px mit 300 dpi (links unten rechts oben)
+ \includegraphics[width=0.8\textwidth, trim=19 45 10 79, clip]{img/plotter-foto.jpg} \\[1mm]
  \textbf{Der Schneideplotter im FabLab}\\
  {\footnotesize Foto: Michael Geiger / FAU FabLab, \href{https://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0}}
 \end{center}
